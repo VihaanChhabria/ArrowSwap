@@ -2,12 +2,15 @@ import tkinter as tk
 import sys
 import webbrowser
 import keyboard
+import os
 
 # Window dimensions
 WINDOW_GEOMETRY = {
     "width": 300,
     "height": 175,
 }
+
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 
 class App:
@@ -21,7 +24,10 @@ class App:
         )
         self.root.resizable(False, False)
         self.root.title("Arrow Swap")
-        self.root.wm_iconbitmap("media/ArrowSwapLogo.ico")
+
+        media_folder = os.path.join(BASE_DIR, "media")
+        image_path = os.path.join(media_folder, "ArrowSwapLogo.ico")
+        self.root.wm_iconbitmap(image_path)
 
         # Set up keyboard interception
         keyboard.on_press(self.intercept_key, suppress=True)
